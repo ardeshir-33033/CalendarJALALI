@@ -30,6 +30,7 @@ class _State extends State<MyApp> {
         showTimePicker: true,
         hore24Format: true);
     if (picked != null) setState(() => _value = picked);
+    print('val:$_value');
   }
 
   @override
@@ -38,39 +39,36 @@ class _State extends State<MyApp> {
     print(
         "Parse TO Format ${persianDate.gregorianToJalali("2019-02-20T00:19:54.000Z", "yyyy-m-d hh:nn")}");
   }
-
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Persain Date'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Date'),
         centerTitle: true,
       ),
-      body: new Container(
+      body: Container(
         child: Column(
           children: <Widget>[
             Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text('  مبدّل تاریخ و زمان ,‌ تاریخ هجری شمسی '),
-                  Text(' تقویم شمسی '),
-                  Text('date picker شمسی '),
-                  new RaisedButton(
+                  RaisedButton(
                     onPressed: _selectDate,
-                    child: new Text('نمایش تقویم'),
+                    child: Text('Taghvim'),
                   ),
                   new RaisedButton(
                     onPressed: _showDatePicker,
-                    child: new Text('نمایش دیت پیکر'),
+                    child:  Text('Date Picker'),
                   ),
                   Text(
-                    "\nزمان و تاریخ فعلی سیستم :  ${persianDate.now}",
+                    "\n Right Now :  ${persianDate.now}",
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.rtl,
                   ),
                   Divider(),
                   Text(
-                    "تقویم ",
+                    "Taghvim",
                     textAlign: TextAlign.center,
                   ),
                   Text(
@@ -92,7 +90,6 @@ class _State extends State<MyApp> {
     );
   }
 
-  /// Display date picker.
   void _showDatePicker() {
     final bool showTitleActions = false;
     DatePicker.showDatePicker(context,
@@ -102,11 +99,11 @@ class _State extends State<MyApp> {
       initialMonth: 05,
       initialDay: 30,*/
         confirm: Text(
-          'تایید',
+          'accept',
           style: TextStyle(color: Colors.red),
         ),
         cancel: Text(
-          'لغو',
+          'cancel',
           style: TextStyle(color: Colors.cyan),
         ),
         dateFormat: _format, onChanged: (year, month, day) {
@@ -116,7 +113,7 @@ class _State extends State<MyApp> {
     }, onConfirm: (year, month, day) {
       _changeDatetime(year, month, day);
       _valuePiker =
-          " تاریخ ترکیبی : $_datetime  \n سال : $year \n  ماه :   $month \n  روز :  $day";
+          " Date : $_datetime  \n Year : $year \n  Month :   $month \n  Day :  $day";
     });
   }
 

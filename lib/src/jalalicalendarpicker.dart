@@ -117,7 +117,6 @@ class _DatePickerHeader extends StatelessWidget {
         mainAxisAlignment = MainAxisAlignment.start;
         break;
     }
-
     final Widget yearButton = IgnorePointer(
       ignoring: mode != DatePickerMode.day,
       ignoringSemantics: false,
